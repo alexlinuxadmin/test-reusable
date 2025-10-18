@@ -1,0 +1,29 @@
+# .github/workflows/build-and-print.yml
+name: Build and Print Environment
+
+on:
+  workflow_call:
+    inputs:
+      ENV_NAME:
+        required: true
+        type: string
+      VARS_CONTEXT:
+        required: false
+        type: string
+
+jobs:
+  build-and-print:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.ENV_NAME }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print environment variable
+        run: |
+          if [ -n "${{ inputs.VARS_CONTEXT }}" ]; then
+            echo "$VARS_CONTEXT"
+          else
+            echo "No VARS_CONTEXT provided"
+          fi
