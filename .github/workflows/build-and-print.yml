@@ -23,4 +23,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Print environment variable
-        run: echo "$VARS_CONTEXT"
+        run: |
+          echo "Environment: ${{ inputs.ENV_NAME }}"
+          echo "VARS_CONTEXT: $VARS_CONTEXT"
